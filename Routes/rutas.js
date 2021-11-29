@@ -11,6 +11,11 @@ app.post('/contactos/listar',function(request,response){
     
 })
 
+app.post('/contactos/listarid',function(request,response){
+    crudC.listarid(request,response)
+    
+})
+
 app.post('/contactos/modificar',function(request,response){
     crudC.modificar(request,response)
     

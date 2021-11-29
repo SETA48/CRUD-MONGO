@@ -40,14 +40,29 @@ crudController.listar = function(request,response){
     })
 }
 
+crudController.listarid = function(request,response){
+    var post = {
+        id:request.body.id
+    }
+
+    if(post.id == undefined || post.id == null || post.id == ''){
+        response.json({state:false,mensaje:'El campo id es obligatorio'})
+        return false;
+    }
+
+    crudModel.listarid(post,function(res){
+        response.json(res)
+    })
+}
+
 crudController.modificar = function(request,response){
-    var posicion = request.body.posicion;
+    var id = request.body.id;
     var nombre = request.body.nombre;
     var apellido = request.body.apellido;
     var telefono = request.body.telefono;
 
-    if(posicion == undefined || posicion == null || posicion == ''){
-        response.json({state:false,mensaje:'El campo posicion en obligatorio'})
+    if(id == undefined || id == null || id == ''){
+        response.json({state:false,mensaje:'El campo id en obligatorio'})
         return false;
     }
 
@@ -67,7 +82,7 @@ crudController.modificar = function(request,response){
     }
 
     var contacto = {
-        posicion:posicion,
+        id:id,
         nombre:nombre,
         apellido:apellido,
         telefono:telefono
@@ -79,16 +94,16 @@ crudController.modificar = function(request,response){
 }
 
 crudController.eliminar = function(request,response){
-    var posicion = request.body.posicion;
+    var id = request.body.id;
     
 
-    if(posicion == undefined || posicion == null || posicion == ''){
-        response.json({state:false,mensaje:'El campo posicion en obligatorio'})
+    if(id == undefined || id == null || id == ''){
+        response.json({state:false,mensaje:'El campo id en obligatorio'})
         return false;
     }
 
     var contacto = {
-        posicion:posicion
+        id:id
     }
 
     crudModel.eliminar(contacto,function(respuesta){
