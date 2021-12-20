@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 var ContactosSchema = new Schema({
     nombre:String,
     apellido:String,
-    telefono:Number
+    correo:String
 })
 
 const MyModel = mongoose.model('Contactos',ContactosSchema)
@@ -18,7 +18,7 @@ crudModel.guardar = function(contacto,callback){
     const instancia = new MyModel
     instancia.nombre = contacto.nombre
     instancia.apellido = contacto.apellido
-    instancia.telefono = contacto.telefono
+    instancia.correo = contacto.correo
 
     instancia.save((error,contactoguardado) => {
         if(error){
@@ -70,7 +70,7 @@ crudModel.modificar = function(contacto,callback){
     MyModel.findByIdAndUpdate(contacto.id,{
         nombre:contacto.nombre,
         apellido:contacto.apellido,
-        telefono:contacto.telefono
+        correo:contacto.correo
     },(error,contactomodificado) => {
         if(error){
             return callback({state:false,info:error})

@@ -4,7 +4,7 @@ var crudController = {};
 crudController.guardar = function(request,response){
     var nombre = request.body.nombre;
     var apellido = request.body.apellido;
-    var telefono = request.body.telefono;
+    var correo = request.body.correo;
 
 
     if(nombre == undefined || nombre == null || nombre == ''){
@@ -17,15 +17,15 @@ crudController.guardar = function(request,response){
         return false;
     }
 
-    if(telefono == undefined || telefono == null || telefono == ''){
-        response.json({state:false,mensaje:'El campo telefono es obligatorio'})
+    if(correo == undefined || correo == null || correo == ''){
+        response.json({state:false,mensaje:'El campo email es obligatorio'})
         return false;
     }
 
     var contacto = {
         nombre:nombre,
         apellido:apellido,
-        telefono:telefono
+        correo:correo
     }
 
 
@@ -59,7 +59,7 @@ crudController.modificar = function(request,response){
     var id = request.body.id;
     var nombre = request.body.nombre;
     var apellido = request.body.apellido;
-    var telefono = request.body.telefono;
+    var correo = request.body.correo;
 
     if(id == undefined || id == null || id == ''){
         response.json({state:false,mensaje:'El campo id en obligatorio'})
@@ -76,8 +76,8 @@ crudController.modificar = function(request,response){
         return false;
     }
 
-    if(telefono == undefined || telefono == null || telefono == ''){
-        response.json({state:false,mensaje:'El campo telefono en obligatorio'})
+    if(correo == undefined || correo == null || correo == ''){
+        response.json({state:false,mensaje:'El campo email en obligatorio'})
         return false;
     }
 
@@ -85,7 +85,7 @@ crudController.modificar = function(request,response){
         id:id,
         nombre:nombre,
         apellido:apellido,
-        telefono:telefono
+        correo:correo
     }
 
     crudModel.modificar(contacto,function(respuesta){
